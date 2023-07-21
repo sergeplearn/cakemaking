@@ -24,16 +24,16 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', AdminController::class);
 
         Route::resource('newcake', CakeCreationController::class)
-            ->only(['index', 'store', 'update', 'destroy']);
+            ->except(['show', 'edit', 'create']);
 
         Route::resource('testimonial', TestimonialController::class)
-            ->only(['index', 'store', 'update', 'destroy']);
+            ->except(['show', 'edit', 'create']);
 
         Route::resource('team', TeamsController::class)
-            ->only(['index', 'store', 'update', 'destroy']);
+            ->except(['show', 'edit', 'create']);
 
         Route::resource('User', AdminregistrationController::class)
-            ->only(['index', 'store', 'update', 'destroy']);
+            ->except(['show', 'edit', 'create']);
 
     });
 

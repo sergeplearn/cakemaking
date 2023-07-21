@@ -59,7 +59,7 @@ class AdminregistrationController extends Controller
      */
     public function update(Request $request, User $User)
     {
-        //$this->authorize('update', $user);
+        $this->authorize('update', $User);
 
         $User->update([
 
