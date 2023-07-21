@@ -13,9 +13,9 @@ class TestimonialController extends Controller
      */
     public function index()
     {
-        
+
         return view('testimonial.admin.index', ['testimonial' => testimonial::with('user')->latest()->get()]);
-       
+
     }
 
     /**
@@ -85,7 +85,7 @@ class TestimonialController extends Controller
     public function destroy(testimonial $testimonial)
     {
         $testimonial->delete();
+
         return redirect()->back();
     }
-
 }

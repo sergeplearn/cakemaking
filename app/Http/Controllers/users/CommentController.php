@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\users;
-use App\Http\Requests\StorecommentReques;
+
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StorecommentReques;
 use App\Models\comment;
-use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
@@ -13,7 +13,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-       
+
     }
 
     /**
@@ -29,8 +29,7 @@ class CommentController extends Controller
      */
     public function store(StorecommentReques $request)
     {
-        
-       
+
         $request->user()->comments()->create($request->validated());
 
         return back();
@@ -58,7 +57,6 @@ class CommentController extends Controller
     public function update(StorecommentReques $request, comment $comment)
     {
         $this->authorize('update', $comment);
-        
 
         $comment->update($request->validated());
 

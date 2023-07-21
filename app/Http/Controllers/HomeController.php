@@ -24,7 +24,8 @@ class HomeController extends Controller
     public function index()
     {
         $cakes = newcake::all();
-return view('Home', ['cakes' => newcake::with('user')->latest()->get()]);
-       
+
+        return view('Home', ['cakes' => newcake::with('user')->latest()->get()]);
+
     }
 }

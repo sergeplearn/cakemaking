@@ -17,8 +17,8 @@ class Userroles
     public function handle(Request $request, Closure $next, string $role): Response
     {
         $roles = [
-            'admin' => ['admin','super_admin'],
-            'user' => ['admin', 'user','super_admin'],
+            'admin' => ['admin', 'super_admin'],
+            'user' => ['admin', 'user', 'super_admin'],
         ];
         $roleid = $roles[$role] ?? [];
         if (! in_array(Auth::user()->user_role, $roleid)) {

@@ -13,9 +13,9 @@ class TeamsController extends Controller
      */
     public function index()
     {
-     
+
         return view('teams.admin.index', ['team' => team::with('user')->latest()->get()]);
-      
+
     }
 
     /**
@@ -68,7 +68,7 @@ class TeamsController extends Controller
      */
     public function update(Request $request, team $team)
     {
-       
+
         $newImageName = time().'_'.$request->name.'.'.
         $request->image->extension();
         $request->image->move(public_path('images'), $newImageName);
@@ -82,7 +82,7 @@ class TeamsController extends Controller
 
         ]
         );
-        
+
         return redirect()->back();
     }
 
@@ -91,8 +91,9 @@ class TeamsController extends Controller
      */
     public function destroy(team $team)
     {
-      
+
         $team->delete();
+
         return redirect()->back();
     }
 }

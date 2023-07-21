@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\users;
-use App\Http\Requests\StorereplycommentRequest;
+
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StorereplycommentRequest;
 use App\Models\replycomment;
-use Illuminate\Http\Request;
 
 class ReplycommentController extends Controller
 {
@@ -29,7 +29,7 @@ class ReplycommentController extends Controller
      */
     public function store(StorereplycommentRequest $request)
     {
-       
+
         // $this->authorize('create',replycomment::class);
 
         replycomment::create($request->validated());
@@ -59,7 +59,6 @@ class ReplycommentController extends Controller
     public function update(StorereplycommentRequest $request, replycomment $replycomment)
     {
         $this->authorize('update', $replycomment);
-        
 
         $replycomment->update($request->validated());
 

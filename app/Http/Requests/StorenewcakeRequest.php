@@ -27,7 +27,7 @@ class StorenewcakeRequest extends FormRequest
             'tell' => ['required', 'string', 'max:255'],
             'price' => ['required', 'string', 'max:255'],
             'more' => ['required'],
-           
+
             'image' => 'required|mimes:jpeg,png,jpg',
         ];
     }
@@ -36,7 +36,7 @@ class StorenewcakeRequest extends FormRequest
     {
         return [
             'nameofperson.required' => 'the name of the person is required',
-           
+
         ];
     }
 }

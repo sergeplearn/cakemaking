@@ -26,7 +26,7 @@ class newcake extends Model
         'price',
         'more',
         'image_path',
-       
+
     ];
 
     protected $dispatchesEvents = [

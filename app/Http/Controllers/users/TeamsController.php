@@ -14,8 +14,9 @@ class TeamsController extends Controller
     public function index()
     {
         $teams = teams::all();
+
         return view('teams.user.indexs', ['teams' => teams::with('user')->latest()->get()]);
-       
+
     }
 
     /**

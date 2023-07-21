@@ -37,11 +37,11 @@ class UploadImgController extends Controller
         $newImageName = time().'_'.$request->name.'.'.
         $request->image->extension();
         $request->image->move(public_path('images'), $newImageName);
- $checkimage = upload_img::where('user_id', $request['user_id'])->exists();
-if($checkimage){
-    return "hello world";
-}
-        if (!$checkimage) {
+        $checkimage = upload_img::where('user_id', $request['user_id'])->exists();
+        if ($checkimage) {
+            return 'hello world';
+        }
+        if (! $checkimage) {
             upload_img::create([
                 'user_id' => $request['user_id'],
                 'image_path' => $newImageName,
@@ -49,7 +49,7 @@ if($checkimage){
 
         }
 
-        return redirect('/home',['checkimage'=>$checkimage]);
+        return redirect('/home', ['checkimage' => $checkimage]);
     }
 
     /**

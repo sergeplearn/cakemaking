@@ -15,9 +15,10 @@ class TestimonialController extends Controller
     {
         $testimonial = testimonial::all();
 
-$testimonial=testimonial::latest()->take(3)->get();
-return view('testimonial.user.index', ['testimonial' => $testimonial]);
-       
+        $testimonial = testimonial::latest()->take(3)->get();
+
+        return view('testimonial.user.index', ['testimonial' => $testimonial]);
+
     }
 
     /**

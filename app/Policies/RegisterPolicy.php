@@ -6,10 +6,9 @@ use App\Models\User;
 
 class RegisterPolicy
 {
-
     public function before(User $user, string $ability)
     {
-        if ($user->user_role === 'admin'|| $user->user_role === 'super_admin') {
+        if ($user->user_role === 'admin' || $user->user_role === 'super_admin') {
             return true;
         }
 

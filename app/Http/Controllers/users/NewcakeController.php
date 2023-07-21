@@ -13,7 +13,7 @@ class NewcakeController extends Controller
      */
     public function index()
     {
-        
+
     }
 
     /**
@@ -38,7 +38,7 @@ class NewcakeController extends Controller
     public function show(newcake $newcake)
     {
         return view('newcake.user.show', ['newcake' => $newcake]);
-        
+
     }
 
     /**

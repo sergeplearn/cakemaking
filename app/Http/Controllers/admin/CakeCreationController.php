@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\admin;
-use App\Http\Requests\StorenewcakeRequest;
+
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StorenewcakeRequest;
 use App\Models\newcake;
 use Illuminate\Http\Request;
 
@@ -13,9 +14,9 @@ class CakeCreationController extends Controller
      */
     public function index()
     {
-        
+
         return view('newcake.admin.index', ['cakes' => newcake::with('user')->latest()->get()]);
-        
+
     }
 
     /**
@@ -24,15 +25,15 @@ class CakeCreationController extends Controller
     public function store(StorenewcakeRequest $request)
     {
 
-       $validated = $request->validated();
-if($request->hasfile('image')){
-    $file = $request->file('image');
-    $extension = $file->getClientOriginalExtension();
-    $filename = time().'.'.$extension;
-    $file->move(public_path('images'), $filename);
+        $validated = $request->validated();
+        if ($request->hasfile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $file->move(public_path('images'), $filename);
 
-};
-       // $newImageName = time().'_'.$request->name.'.'.
+        }
+        // $newImageName = time().'_'.$request->name.'.'.
         //$request->image->extension();
         //$request->image->move(public_path('images'), $newImageName);
 
@@ -46,7 +47,7 @@ if($request->hasfile('image')){
             'image_path' => $filename,
 
         ]);
-        
+
         return redirect()->back();
     }
 
@@ -56,7 +57,7 @@ if($request->hasfile('image')){
     public function update(Request $request, newcake $newcake)
     {
         $this->authorize('update', $newcake);
-     
+
         $newcake->nameofperson = request('nameofperson');
         $newcake->nameofcake = request('nameofcake');
         $newcake->price = request('price');

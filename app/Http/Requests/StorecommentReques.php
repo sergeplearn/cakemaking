@@ -22,7 +22,7 @@ class StorecommentReques extends FormRequest
     public function rules(): array
     {
         return [
-            
+
             'newcake_id' => ['required'],
             'comment' => ['required', 'string', 'max:255'],
         ];

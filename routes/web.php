@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\AdminController;
- 
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,16 +32,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('team', TeamsController::class)
             ->only(['index', 'store', 'update', 'destroy']);
 
-        
         Route::resource('User', AdminregistrationController::class)
-            ->only(['index', 'store','update', 'destroy']);
+            ->only(['index', 'store', 'update', 'destroy']);
 
     });
 
-   
-    Route::group(['prefix' => 'user','namespace' => 'users'], function () {
+    Route::group(['prefix' => 'user', 'namespace' => 'users'], function () {
         Route::resource('newcake', NewcakeController::class)
-        ->only(['show']);
+            ->only(['show']);
 
         Route::resource('comment', CommentController::class)
             ->only(['store', 'update', 'destroy']);
@@ -55,20 +52,11 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::resource('unlike', UnlikeController::class)
             ->only(['store']);
-        
+
         Route::resource('upload_img', UploadImgController::class)
             ->only(['store']);
 
-        
-        
-            
-        
     });
-   
-   
-   
-   
-    
 
 });
 
@@ -80,7 +68,6 @@ Route::group(['prefix' => 'user', 'namespace' => 'users'], function () {
         ->only(['index']);
 
 });
-
 
 Auth::routes();
 

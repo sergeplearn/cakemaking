@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\admin;
-use App\Http\Requests\AdminregistrationRequest;
+
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminregistrationRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -13,9 +14,9 @@ class AdminregistrationController extends Controller
      */
     public function index()
     {
-      $user = User::where('user_role','admin')->get();
-     
-       return view('adminregistration.register',['user'=>$user]);
+        $user = User::where('user_role', 'admin')->get();
+
+        return view('adminregistration.register', ['user' => $user]);
     }
 
     /**
@@ -31,9 +32,10 @@ class AdminregistrationController extends Controller
      */
     public function store(AdminregistrationRequest $request)
     {
-        $this->authorize('create', User::class); 
-    User::create($request->validated());
-    return redirect()->back();
+        $this->authorize('create', User::class);
+        User::create($request->validated());
+
+        return redirect()->back();
     }
 
     /**
@@ -49,7 +51,7 @@ class AdminregistrationController extends Controller
      */
     public function edit(User $User)
     {
-       
+
     }
 
     /**
@@ -65,14 +67,13 @@ class AdminregistrationController extends Controller
             'email' => $request['email'],
             'password' => $request['password'],
             'user_role' => $request['user_role'],
-           
 
         ]
         );
-      
-       $User->update();
-       
-       return "hello";
+
+        $User->update();
+
+        return 'hello';
     }
 
     /**
@@ -80,11 +81,11 @@ class AdminregistrationController extends Controller
      */
     public function destroy(User $User)
     {
-        
+
         $this->authorize('delete', $User);
-        
-        
+
         $User->delete();
+
         return redirect()->back();
     }
 }
