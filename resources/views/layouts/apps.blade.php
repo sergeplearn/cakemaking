@@ -159,7 +159,7 @@
           aria-expanded="false"
         >
         <img
-          src=" asset('images/' .{{Auth::user()->upload_img->image_path ?? '' }})"
+          src="{{asset('images/' . optional(Auth::user()->upload_img)->image_path)   }}"
           
           class="rounded-circle"
             height="36"

@@ -172,7 +172,7 @@
     
        
         <img
-            src=" asset('images/' .{{ Auth::user()->upload_img->image_path ?? 'No category' }})"
+            src="{{asset('images/'. optional(Auth::user()->upload_img)->image_path) }}"
             class="rounded-circle"
             height="36"
             alt="Black and White Portrait of a Man"
