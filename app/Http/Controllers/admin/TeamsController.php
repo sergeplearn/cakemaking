@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\admin;
-
+use App\Http\Requests\TeamsRequest; 
 use App\Http\Controllers\Controller;
 use App\Models\team;
 use Illuminate\Http\Request;
@@ -29,9 +29,9 @@ class TeamsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TeamsRequest $request)
     {
-
+        $request->validated();
         $newImageName = time().'_'.$request->name.'.'.
         $request->image->extension();
         $request->image->move(public_path('images'), $newImageName);
@@ -66,9 +66,9 @@ class TeamsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, team $team)
+    public function update(TeamsRequest $request, team $team)
     {
-
+        $request->validated();
         $newImageName = time().'_'.$request->name.'.'.
         $request->image->extension();
         $request->image->move(public_path('images'), $newImageName);

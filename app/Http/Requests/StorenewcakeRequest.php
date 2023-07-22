@@ -36,7 +36,7 @@ class StorenewcakeRequest extends FormRequest
     {
         return [
             'nameofperson.required' => 'the name of the person is required',
-
+            'tell.phone'=>'required a validate cameroon number'
         ];
     }
 }

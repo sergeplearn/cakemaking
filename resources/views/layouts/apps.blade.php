@@ -82,7 +82,7 @@
         
           </li>
           <li class="list-group-item bg-info py-1">
-          <a href="/admin/teams" class="list-group-item list-group-item-action py-2 ripple"
+          <a href="/admin/team" class="list-group-item list-group-item-action py-2 ripple"
           ><i class="fas fa-user-plus me-3"></i><span>Teams</span></a
         >
 

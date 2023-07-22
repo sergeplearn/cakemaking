@@ -81,7 +81,7 @@ class User extends Authenticatable
 
     public function teams(): HasMany
     {
-        return $this->hasMany(teams::class, 'user_id', 'id');
+        return $this->hasMany(team::class, 'user_id', 'id');
     }
 
     public function testimonial(): HasMany

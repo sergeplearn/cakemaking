@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\admin;
-
+use App\Http\Requests\TestimonialRequest; 
 use App\Http\Controllers\Controller;
 use App\Models\testimonial;
 use Illuminate\Http\Request;
@@ -29,8 +29,10 @@ class TestimonialController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TestimonialRequest $request)
     {
+        $validated = $request->validated();
+    
         $newImageName = time().'_'.$request->name.'.'.
         $request->image->extension();
         $request->image->move(public_path('images'), $newImageName);
@@ -64,7 +66,7 @@ class TestimonialController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, testimonial $testimonial)
+    public function update(TestimonialRequest $request, testimonial $testimonial)
     {
         $newImageName = time().'_'.$request->name.'.'.
         $request->image->extension();

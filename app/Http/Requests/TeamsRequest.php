@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TestimonialRequest extends FormRequest
+class TeamsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,6 +26,17 @@ class TestimonialRequest extends FormRequest
             'position' => ['required', 'string', 'max:255'],
             'more'  => ['required', 'string'],
             'image' => 'required|mimes:jpeg,png,jpg',
+            'tell' => 'required|phone:AUTO,CM',
+            
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'nameofperson.required' => 'the name of the person is required',
+            'tell.phone'=>'required a validate cameroon number'
+
         ];
     }
 }
