@@ -16,7 +16,7 @@
                 </div>
             </div>
         </header>
-@foreach($teams as $teams)
+@foreach($team as $teams)
 <div class="card mt-4 border-0 mb-4">
 
 

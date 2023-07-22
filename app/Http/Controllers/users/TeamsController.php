@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\users;
 
 use App\Http\Controllers\Controller;
-use App\Models\teams;
+use App\Models\team;
 use Illuminate\Http\Request;
 
 class TeamsController extends Controller
@@ -13,9 +13,9 @@ class TeamsController extends Controller
      */
     public function index()
     {
-        $teams = teams::all();
+        $teams = team::all();
 
-        return view('teams.user.indexs', ['teams' => teams::with('user')->latest()->get()]);
+        return view('teams.user.indexs', ['team' => team::with('user')->latest()->get()]);
 
     }
 

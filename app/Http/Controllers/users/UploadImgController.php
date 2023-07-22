@@ -49,7 +49,7 @@ class UploadImgController extends Controller
 
         }
 
-        return redirect('/home', ['checkimage' => $checkimage]);
+        return view('welcome', ['checkimage' => $checkimage]);
     }
 
     /**

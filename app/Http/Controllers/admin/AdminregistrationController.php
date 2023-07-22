@@ -13,7 +13,7 @@ class AdminregistrationController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
+    {    $this->authorize('viewAny',User::class);
         $user = User::where('user_role', 'admin')->get();
 
         return view('adminregistration.register', ['user' => $user]);

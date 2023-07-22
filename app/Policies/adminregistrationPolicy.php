@@ -11,7 +11,7 @@ class adminregistrationPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return $user->user_role === 'super_admin';
     }
 
     /**
@@ -19,7 +19,7 @@ class adminregistrationPolicy
      */
     public function view(User $user, User $model): bool
     {
-        //
+        
     }
 
     /**
