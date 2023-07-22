@@ -32,7 +32,7 @@ class UploadImgController extends Controller
         $request->validate([
 
             'user_id' => 'required',
-            'image' => ['mimes:jpeg,png,jpg|nullable'], ]);
+            'image' => ['mimes:jpeg,png,jpg,nullable'], ]);
 
         $newImageName = time().'_'.$request->name.'.'.
         $request->image->extension();

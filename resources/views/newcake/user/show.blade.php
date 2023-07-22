@@ -351,7 +351,7 @@
                 <div class="dropdown show my_card">
   <a  href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
   <img class="rounded-circle shadow-1-strong me-3"
-                    src="{{ asset('images/' . $comment->user->upload_img->image_path)  }}" alt="avatar" width="60"
+                    src="{{ asset('images/' . optional($comment->user->upload_img)->image_path)  }}" alt="avatar" width="60"
                     height="60" />
   </a>
 
@@ -373,15 +373,16 @@
                         {{ $comment->user->name }}  <span class="small">- 2 hours  
  <?php
   
-  $dates;
+ $total = abs(time() - strtotime( $comment->created_at));
+ // $dates;
   
 
-$date = date("Y-m-d h:i:sa");
-$d=(strtotime($date) - strtotime( $comment->created_at));
- $month = 60*60*24;
- $total = $d/$month;
+//$date = date("Y-m-d h:i:sa");
+//$d=(strtotime($date) - strtotime( $comment->created_at));
+ //$month = 60*60*24;
+ //$total = $d/$month;
 
-  echo $total;
+  echo $total/60;
  
 
 ?></span>
@@ -510,7 +511,7 @@ $d=(strtotime($date) - strtotime( $comment->created_at));
                     <div class="dropdown show my_card">
   <a  href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
   <img class="rounded-circle shadow-1-strong me-3"
-                          src="{{ asset('images/' .  $reply->user->upload_img->image_path)  }}" alt="avatar"
+                          src="{{ asset('images/' .  optional($reply->user->upload_img)->image_path)  }}" alt="avatar"
                           width="60" height="60" />
   </a>
 

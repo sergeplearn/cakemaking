@@ -24,7 +24,7 @@ class StorenewcakeRequest extends FormRequest
         return [
             'nameofperson' => ['required', 'string', 'max:255'],
             'nameofcake' => ['required', 'string', 'max:255'],
-            'tell' => ['required', 'string', 'max:255'],
+            'tell' => 'required|phone:AUTO,CM',
             'price' => ['required', 'string', 'max:255'],
             'more' => ['required'],
 

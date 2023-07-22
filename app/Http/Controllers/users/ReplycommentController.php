@@ -73,6 +73,6 @@ class ReplycommentController extends Controller
         $this->authorize('delete', $replycomment);
         $replycomment->delete();
 
-        return back();
+        return redirect('user/newcake/'.$replycomment->newcake_id);
     }
 }

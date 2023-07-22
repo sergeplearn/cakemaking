@@ -71,7 +71,7 @@ class CommentController extends Controller
         $this->authorize('delete', $comment);
         $comment->delete();
 
-        return redirect()->back();
+        return redirect('user/newcake/'.$comment->newcake_id);
 
     }
 }

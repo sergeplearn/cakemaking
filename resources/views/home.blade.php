@@ -60,9 +60,9 @@
           <div class="card-body d-flex flex-column">
             <h6 class="card-title text-center text-dark">{{ $cake->nameofcake}} cake</h6>
             <p class="card-text lh-1 text-muted ">Made by: <b>{{ $cake->nameofperson}}</b> </p>
-            <p class="card-text lh-1 text-muted ">Phone No: <b>{{ $cake->tell}}</b> </p>
-
+            <p class="card-text lh-1 text-muted ">Phone No: <b> {{ $cake->tell}}</b> </p>
             <p class="card-text text-muted lh-1 text-black">Amount: <b>{{ $cake->price}}</b> Frs</p>
+            
             
           </div>
           </a>

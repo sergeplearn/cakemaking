@@ -4,6 +4,8 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorenewcakeRequest;
+use Propaganistas\LaravelPhone\Casts\RawPhoneNumberCast;
+use Propaganistas\LaravelPhone\Casts\E164PhoneNumberCast;
 use App\Models\newcake;
 use Illuminate\Http\Request;
 
@@ -36,7 +38,7 @@ class CakeCreationController extends Controller
         // $newImageName = time().'_'.$request->name.'.'.
         //$request->image->extension();
         //$request->image->move(public_path('images'), $newImageName);
-
+      
         $this->authorize('create', newcake::class);
         $request->user()->newcake()->create([
             'nameofperson' => $request['nameofperson'],
