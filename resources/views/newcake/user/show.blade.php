@@ -1,34 +1,4 @@
 @extends('layouts.everyone')
-@section('css')
-<style>
-  
-  img{
-   
-    aspect-ratio:1/1;
-    display:block;
-    object-position: center;
-  
-  }
-  .blur-load {
-    background-size: cover;
-    background-position: center
-  }
-  .footer{
-   position: absolute;
-   bottom:0;
-   right:0;
-   
-   
-  }
-  .scroll {
-    
-    overflow-y: auto;
-    max-width: 100%;
-     max-height: 280px;
-    
-}
-</style>
-@stop
 
 @section('content')
 

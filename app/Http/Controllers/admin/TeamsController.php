@@ -44,7 +44,7 @@ class TeamsController extends Controller
             'image_path' => $newImageName,
         ]);
 
-        return 'success';
+        return redirect('/admin/team');
     }
 
     /**
@@ -83,7 +83,7 @@ class TeamsController extends Controller
         ]
         );
 
-        return redirect()->back();
+        return redirect('/admin/team');
     }
 
     /**
@@ -94,6 +94,6 @@ class TeamsController extends Controller
 
         $team->delete();
 
-        return redirect()->back();
+        return redirect('/admin/team');
     }
 }

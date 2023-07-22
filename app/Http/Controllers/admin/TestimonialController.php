@@ -44,7 +44,7 @@ class TestimonialController extends Controller
             'image_path' => $newImageName,
         ]);
 
-        return 'success';
+        return redirect('/admin/testimonial');
     }
 
     /**
@@ -79,6 +79,7 @@ class TestimonialController extends Controller
             'image_path' => $newImageName,
         ]
         );
+        return redirect('/admin/testimonial');
     }
 
     /**
@@ -88,6 +89,6 @@ class TestimonialController extends Controller
     {
         $testimonial->delete();
 
-        return redirect()->back();
+        return redirect('/admin/testimonial');
     }
 }

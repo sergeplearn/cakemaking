@@ -35,7 +35,7 @@ class AdminregistrationController extends Controller
         $this->authorize('create', User::class);
         User::create($request->validated());
 
-        return redirect()->back();
+        return redirect('/admin/User');
     }
 
     /**
@@ -43,7 +43,7 @@ class AdminregistrationController extends Controller
      */
     public function show(User $user)
     {
-        //
+        
     }
 
     /**
@@ -73,7 +73,7 @@ class AdminregistrationController extends Controller
 
         $User->update();
 
-        return 'hello';
+        return redirect('/admin/User');
     }
 
     /**
@@ -86,6 +86,6 @@ class AdminregistrationController extends Controller
 
         $User->delete();
 
-        return redirect()->back();
+        return redirect('/admin/User');
     }
 }

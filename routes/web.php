@@ -23,6 +23,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'Userroles:admin', 'prefix' => 'admin', 'namespace' => 'admin'], function () {
         Route::get('/', AdminController::class);
 
+        Route::resource('User', ProfileController::class)
+            ->only(['show', 'edit', 'update']);
+
         Route::resource('newcake', CakeCreationController::class)
             ->except(['show', 'edit', 'create']);
 

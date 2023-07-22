@@ -169,19 +169,25 @@
           aria-expanded="false"
          
         >
-    
-       
+   
+   
+ 
+   @if(optional(Auth::user()->upload_img)->user_id === Auth::user()->id)
         <img
             src="{{asset('images/'. optional(Auth::user()->upload_img)->image_path) }}"
             class="rounded-circle"
             height="36"
             alt="Black and White Portrait of a Man"
             loading="lazy"
-            class="btn"
-            data-bs-toggle="modal" 
-            data-bs-target="#exampleModalCenter123"
+            
           />
-         
+          @else
+          <i 
+            data-bs-toggle="modal" 
+            data-bs-target="#exampleModalCenter123" class="fas fa-user-tie fa-2x">
+            
+          </i>
+          @endif
         </a>
     
       

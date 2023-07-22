@@ -52,6 +52,11 @@
         >
           <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span>
         </a>
+
+        <form action="{{route('User.show',optional(Auth::user())->id)}}" method="get">
+         <button type="submit" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-lock fa-fw me-3"></i><span>Admin Profile</span></button>
+        </form>
+        
       
         <a href="{{route('User.index')}}" class="list-group-item list-group-item-action py-2 ripple"
           ><i class="fas fa-lock fa-fw me-3"></i><span>Admin registration</span></a
@@ -158,6 +163,7 @@
           data-mdb-toggle="dropdown"
           aria-expanded="false"
         >
+        @if(optional(Auth::user()->upload_img)->user_id === Auth::user()->id)
         <img
           src="{{asset('images/' . optional(Auth::user()->upload_img)->image_path)   }}"
           
@@ -166,7 +172,12 @@
           alt="MDB Logo"
           loading="lazy"
         />
-      
+        @else
+          <i 
+             class="fas fa-user-tie fa-2x my_card">
+            
+          </i>
+          @endif
         </a>
 
       @guest
