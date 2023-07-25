@@ -5,6 +5,7 @@ use App\Http\Requests\TestimonialRequest;
 use App\Http\Controllers\Controller;
 use App\Models\testimonial;
 use Illuminate\Http\Request;
+use App\Events\greetingevent;
 
 class TestimonialController extends Controller
 {
@@ -44,7 +45,7 @@ class TestimonialController extends Controller
             'image_path' => $newImageName,
         ]);
 
-        return redirect('/admin/testimonial');
+        return redirect('/admin/testimonial')->with('msgs', 'successfully updated');
     }
 
     /**
@@ -79,7 +80,7 @@ class TestimonialController extends Controller
             'image_path' => $newImageName,
         ]
         );
-        return redirect('/admin/testimonial');
+        return redirect('/admin/testimonial')->with('msgs', 'successfully updated');
     }
 
     /**
@@ -89,6 +90,6 @@ class TestimonialController extends Controller
     {
         $testimonial->delete();
 
-        return redirect('/admin/testimonial');
+        return redirect('/admin/testimonial')->with('msgs', 'successfully updated');
     }
 }

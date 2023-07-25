@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <link rel="stylesheet" href="/../css/everyone.css">
     @yield('css')
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
      <!-- CSRF Token -->
      <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -79,7 +79,7 @@
 
 
 <!-- Navbar -->
-<nav class="navbar sticky-top space-x-4 navbar-expand-lg bg-gray  shadow">
+<nav class="navbar sticky-top header space-x-4 navbar-expand-lg bg-gray  shadow">
 
   <!-- Container wrapper -->
   <div class="container-fluid">
@@ -226,13 +226,13 @@
 
 
 
-  <div class="container py-4 mb-5">
+  <div class="container py-4 mb-5" id="main">
 
   @yield('content')
 
   </div>
 
-  <footer class="bg-gray-800 py-20 mt-20 text-center   text-lg-start fixed-bottom" >
+  <footer class="bg-gray-800 py-20 mt-20 text-center   text-lg-start " >
   
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
     © 2020 Copyright:

@@ -49,7 +49,7 @@ class UploadImgController extends Controller
 
         }
 
-        return view('welcome', ['checkimage' => $checkimage]);
+        return view('welcome', ['checkimage' => $checkimage])->with('msgs', 'successfully updated');
     }
 
     /**

@@ -50,7 +50,7 @@ class CakeCreationController extends Controller
 
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with('msgs', 'successfully updated');;
     }
 
     /**
@@ -68,7 +68,7 @@ class CakeCreationController extends Controller
         $newcake->more = request('more');
         $newcake->save();
 
-        return redirect('admin/newcake');
+        return redirect('admin/newcake')->with('msgs', 'successfully updated');;
 
     }
 
@@ -80,6 +80,6 @@ class CakeCreationController extends Controller
         $this->authorize('delete', $newcake);
         $newcake->delete();
 
-        return redirect('admin/newcake');
+        return redirect('admin/newcake')->with('msgs', 'successfully updated');;
     }
 }

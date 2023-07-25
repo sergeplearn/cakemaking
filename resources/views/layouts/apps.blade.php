@@ -25,7 +25,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
      <!-- CSRF Token -->
      <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -40,18 +40,21 @@
 
 
   <!--Main Navigation-->
-<header>
+<header class="header">
   <!-- Sidebar -->
-  <nav id="sidebarMenu" class="collapse  d-lg-block sidebar collapse bg-white">
+  <nav id="sidebarMenu" class="collapse   d-lg-block sidebar collapse bg-white">
     <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4">
-        <a
-          href="#"
-          class="list-group-item list-group-item-action py-2 ripple"
-          aria-current="true"
-        >
-          <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span>
-        </a>
+
+
+      
+
+      <div class="profile">
+        <img src="{{asset('images/' . optional(Auth::user()->upload_img)->image_path)   }}" alt="" class="img-fluid rounded-circle">
+        <h1 class="text-light"><a href="index.html">Alex Smith</a></h1>
+        </div>
+
+        
 
         <form action="{{route('User.show',optional(Auth::user())->id)}}" method="get">
          <button type="submit" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-lock fa-fw me-3"></i><span>Admin Profile</span></button>
@@ -61,9 +64,9 @@
         <a href="{{route('User.index')}}" class="list-group-item list-group-item-action py-2 ripple"
           ><i class="fas fa-lock fa-fw me-3"></i><span>Admin registration</span></a
         >
-        <div class="py-5"></div>
+        <div class="py-3"></div>
 
-        <a class="list-group-item bg-info text-white list-group-item-action py-2 ripple"
+        <a class="list-group-item   list-group-item-action py-2 ripple"
          data-toggle="collapse"
          
          href="#collapseExample"
@@ -75,18 +78,18 @@
         <ul id="collapseExample" class="collapse list-group  list-group-flush">
          
          
-          <li class="list-group-item bg-info py-1">
+          <li class="list-group-item  py-1">
           <a href="/home" class="list-group-item list-group-item-action py-2 ripple"
           ><i class="fas fa-house me-3"></i><span>user home</span></a
         >
           </li>
-          <li class="list-group-item bg-info py-1">
+          <li class="list-group-item  py-1">
           <a href="/admin/newcake" class="list-group-item list-group-item-action py-2 ripple"
           ><i class="fas fa-cake-candles me-3"></i><span>cake</span></a
         >
         
           </li>
-          <li class="list-group-item bg-info py-1">
+          <li class="list-group-item  py-1">
           <a href="/admin/team" class="list-group-item list-group-item-action py-2 ripple"
           ><i class="fas fa-user-plus me-3"></i><span>Teams</span></a
         >
@@ -94,7 +97,7 @@
           </li>
 
           </li>
-          <li class="list-group-item py-1 bg-info">
+          <li class="list-group-item py-1 ">
           <a href="/admin/testimonial" class="list-group-item list-group-item-action py-2 ripple"
           ><i class="fas fa-book-open-reader me-3"></i><span>Testimonial</span></a
         >
@@ -122,7 +125,7 @@
   <!-- Sidebar -->
 
   <!-- Navbar -->
-  <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-info fixed-top">
+  <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light  fixed-top">
     <!-- Container wrapper -->
     <div class="container-fluid">
       <!-- Toggle button -->
@@ -194,7 +197,7 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white my_card" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle my_card" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 

@@ -25,6 +25,8 @@ class HomeController extends Controller
     {
         $cakes = newcake::all();
 
+     
+
         return view('Home', ['cakes' => newcake::with('user')->latest()->get()]);
 
     }

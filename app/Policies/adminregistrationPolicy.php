@@ -3,15 +3,18 @@
 namespace App\Policies;
 
 use App\Models\User;
+use Illuminate\Auth\Access\Response;
 
 class adminregistrationPolicy
 {
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
+    public function viewAny(User $user):Response
     {
-        return $user->user_role === 'super_admin';
+        return $user->user_role === 'super_admin'
+        ?Response::allow()
+        :Response::denyAsNotFound();
     }
 
     /**
@@ -44,6 +47,7 @@ class adminregistrationPolicy
     public function delete(User $user, User $model): bool
     {
         return $user->user_role === 'super_admin';
+       
     }
 
     /**
@@ -61,4 +65,12 @@ class adminregistrationPolicy
     {
         //
     }
+
+
+    public function changeowner(User $user, User $model): bool
+    {
+        return $user->user_role === 'super_admin';
+    }
+
+    
 }

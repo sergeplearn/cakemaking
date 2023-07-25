@@ -23,6 +23,7 @@ body {
 @media (max-width: 991.98px) {
   .sidebar {
     width: 100%;
+    
   }
 }
 .sidebar .active {
@@ -46,8 +47,8 @@ body {
   min-width: 100%;
   min-height: 100%;
   image-orientation: from-image;
-  background-image: url(/img/bread.jpg);
-  background-repeat: repeat;
+ background-color: aquamarine;
+
   
   background-size: contain;
   } 
@@ -55,3 +56,12 @@ body {
     border: 0;
     box-shadow: none;
   }
+
+  .header {
+    
+    background: #040b14;
+  
+  }
+  
+
+  

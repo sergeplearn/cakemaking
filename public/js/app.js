@@ -33,5 +33,10 @@
   } );
 });
 
+//alert duration
+$(".alerts").delay(5000).slideUp(1000, function() {
+  $(this).alert('close');
+});
+
 
 

@@ -5,7 +5,7 @@
 
   
   @if($errors->any())
-  <div class="alert alert-danger">
+  <div class="alert alerts alert-danger">
     <ul>
       @foreach($errors->all() as $errors)
       {{ $errors }}
@@ -98,7 +98,7 @@
 </div>
 
 
-
+@include('alert.index') 
 
 
 @can('create',App\Models\newcake::class)

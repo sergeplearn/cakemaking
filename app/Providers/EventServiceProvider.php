@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Providers;
-
+use App\Events\greetingevent;
+use App\Listeners\greetinglistener;
 use App\Events\Createnewregisteredusers;
 use App\Events\NewcakeCreated;
 use App\Listeners\SendNewcakeNotifications;
@@ -24,6 +25,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         Createnewregisteredusers::class => [
             SendNewRegistedNotifications::class,
+        ],
+        greetingevent::class => [
+            greetinglistener::class,
         ],
         Registered::class => [
             SendEmailVerificationNotification::class,

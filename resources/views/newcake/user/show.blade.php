@@ -36,14 +36,7 @@
 
 
 
-  <?php
 
-//$date = date("Y/m/d");
-//$d=(strtotime($date) - strtotime( $comment->created_at ));
- //$month = 60*60*24*7*4;
-//$total =ceil($d/$month);
-//echo $total;
-?>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal"  class="row d-flex justify-content-center my-5 py-2  " tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -340,22 +333,7 @@
                     <div>
                       <div class="d-flex justify-content-between align-items-center">
                         <p class="mb-1">
-                        {{ $comment->user->name }}  <span class="small">- 2 hours  
- <?php
-  
- $total = abs(time() - strtotime( $comment->created_at));
- // $dates;
-  
-
-//$date = date("Y-m-d h:i:sa");
-//$d=(strtotime($date) - strtotime( $comment->created_at));
- //$month = 60*60*24;
- //$total = $d/$month;
-
-  echo $total/60;
- 
-
-?></span>
+                        {{ $comment->user->name }}  <span class="small txtc">- {{ $comment->created_at->diffForHumans()}}</span>
                         </p>
                         
                         <button style="float:right" type="button" class="btn my_card" data-bs-toggle="modal" data-bs-target="#exampleModal{{$comment->id}}">
@@ -497,7 +475,7 @@
                         <div>
                           <div class="d-flex justify-content-between align-items-center">
                             <p class="mb-1">
-                            {{ $reply->user->name }} <span class="small">- 3 hours ago</span>
+                            {{ $reply->user->name }} <span class="small txtc">- {{ $reply->created_at->diffForHumans()}}</span>
                             </p>
                           </div>
                           <p class="small mb-0">

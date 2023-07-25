@@ -1,19 +1,26 @@
 <?php
 
 namespace App\Http\Controllers\admin;
-
+use App\Mail\registeduser;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminregistrationRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Events\greetingevent;
 
 class AdminregistrationController extends Controller
 {
+
+    public function __construct(){
+        $this->authorizeResource(User::class,'User');
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
-    {    $this->authorize('viewAny',User::class);
+    {    //$this->authorize('viewAny',User::class);
         $user = User::where('user_role', 'admin')->get();
 
         return view('adminregistration.register', ['user' => $user]);
@@ -32,10 +39,13 @@ class AdminregistrationController extends Controller
      */
     public function store(AdminregistrationRequest $request)
     {
-        $this->authorize('create', User::class);
-        User::create($request->validated());
+   // $this->authorize('create', User::class);
+      $User = User::create($request->validated());
+      Mail::to($User->email, $User->name)->send(new registeduser($User));
 
-        return redirect('/admin/User');
+    
+
+        return redirect('/admin/User')->with('msgs', 'successfully updated');
     }
 
     /**
@@ -73,7 +83,7 @@ class AdminregistrationController extends Controller
 
         $User->update();
 
-        return redirect('/admin/User');
+        return redirect('/admin/User')->with('msgs', 'successfully updated');
     }
 
     /**
@@ -82,10 +92,10 @@ class AdminregistrationController extends Controller
     public function destroy(User $User)
     {
 
-        $this->authorize('delete', $User);
+       // $this->authorize('delete', $User);
 
         $User->delete();
 
-        return redirect('/admin/User');
+        return redirect('/admin/User')->with('msgs', 'successfully updated');;
     }
 }
