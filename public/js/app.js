@@ -38,5 +38,9 @@ $(".alerts").delay(5000).slideUp(1000, function() {
   $(this).alert('close');
 });
 
+const glightbox = GLightbox({
+  selector: '.glightbox'
+});
+
 
 

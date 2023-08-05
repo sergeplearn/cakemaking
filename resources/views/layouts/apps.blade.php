@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="/../css/everyone.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     
+ 
+<link href="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone.css" rel="stylesheet" type="text/css" />
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" >
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" ></script>
@@ -42,7 +44,7 @@
   <!--Main Navigation-->
 <header class="header">
   <!-- Sidebar -->
-  <nav id="sidebarMenu" class="collapse   d-lg-block sidebar collapse bg-white">
+  <nav id="sidebarMenu" class="collapse   d-lg-block sidebar collapse bg-info">
     <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4">
 
@@ -50,15 +52,14 @@
       
 
       <div class="profile">
-        <img src="{{asset('images/' . optional(Auth::user()->upload_img)->image_path)   }}" alt="" class="img-fluid rounded-circle">
-        <h1 class="text-light"><a href="index.html">Alex Smith</a></h1>
+        <img src="{{asset('images/' . optional(Auth::user()->upload_img)->image_path)   }}" height="40" alt=""  class="img-fluid rounded-circle">
+        <h1 class="text-light"><a href="{{route('User.show',optional(Auth::user())->id)}}">{{ Auth::user()->name }}</a></h1>
         </div>
 
         
 
-        <form action="{{route('User.show',optional(Auth::user())->id)}}" method="get">
-         <button type="submit" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-lock fa-fw me-3"></i><span>Admin Profile</span></button>
-        </form>
+        <div class="py-3"></div>
+
         
       
         <a href="{{route('User.index')}}" class="list-group-item list-group-item-action py-2 ripple"
@@ -73,7 +74,7 @@
          aria-current="true"
          aria-expanded="false"
          aria-controls="collapseExample">
-         <span >items available</span>
+         <span >Poducts</span>
         </a>
         <ul id="collapseExample" class="collapse list-group  list-group-flush">
          
@@ -84,33 +85,28 @@
         >
           </li>
           <li class="list-group-item  py-1">
-          <a href="/admin/newcake" class="list-group-item list-group-item-action py-2 ripple"
-          ><i class="fas fa-cake-candles me-3"></i><span>cake</span></a
-        >
-        
+         
+        Cake  <span><a href="/admin/newcake" class=" float-right ripple "> <i class=" fas fa-plus fa-lg"></i></a></span> 
           </li>
           <li class="list-group-item  py-1">
-          <a href="/admin/team" class="list-group-item list-group-item-action py-2 ripple"
-          ><i class="fas fa-user-plus me-3"></i><span>Teams</span></a
-        >
-
+          
+        Teams  <span><a href="/admin/team" class=" float-right ripple "> <i class=" fas fa-plus fa-lg"></i></a></span> 
           </li>
 
           </li>
-          <li class="list-group-item py-1 ">
-          <a href="/admin/testimonial" class="list-group-item list-group-item-action py-2 ripple"
-          ><i class="fas fa-book-open-reader me-3"></i><span>Testimonial</span></a
-        >
-
+          <li class="list-group-item py-1 p-3">
+         
+        Testimonial  <span><a href="/admin/testimonial" class=" float-right ripple "> <i class=" fas fa-plus fa-lg"></i></a></span> 
           </li>
-
 
 
           <li class="list-group-item py-1">
-          <a href="/comment" class="list-group-item list-group-item-action py-2 ripple"
-          ><i class="fas fa-message me-3"></i><span>comment</span></a
-        >
+          
+            comment  <span><a href="/comment" class=" float-right ripple"> <i class="fas fa-plus fa-lg"></i></a></span> 
           </li>
+
+
+          
         </ul>
 
 
@@ -125,7 +121,7 @@
   <!-- Sidebar -->
 
   <!-- Navbar -->
-  <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light  fixed-top">
+  <nav  class=" navbar-expand-lg navbar-light  fixed-top">
     <!-- Container wrapper -->
     <div class="container-fluid">
       <!-- Toggle button -->
@@ -143,12 +139,7 @@
 
       <!-- Brand -->
       <a class="navbar-brand" href="#">
-        <img
-          src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
-          height="25"
-          alt="MDB Logo"
-          loading="lazy"
-        />
+        
       </a>
       
 
@@ -241,11 +232,13 @@
 </main>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone-min.js"></script>
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <script src="/../js/app.js"></script>
+   
   </body>
 </html>

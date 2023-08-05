@@ -21,7 +21,7 @@ class UploadImgController extends Controller
      */
     public function create()
     {
-        //
+        return view('image');
     }
 
     /**

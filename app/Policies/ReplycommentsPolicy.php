@@ -37,7 +37,7 @@ class ReplycommentsPolicy
      */
     public function create(User $user): bool
     {
-
+       return $user->user_role === 'admin' || $user->user_role === 'super_admin';
     }
 
     /**

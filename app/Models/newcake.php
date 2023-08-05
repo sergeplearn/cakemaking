@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Events\NewcakeCreated;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -26,6 +28,7 @@ class newcake extends Model
         'price',
         'more',
         'image_path',
+        'image_paths',
 
     ];
 
@@ -52,4 +55,6 @@ class newcake extends Model
     {
         return $this->hasMany(unlike::class, 'newcake_id', 'id');
     }
+
+   
 }

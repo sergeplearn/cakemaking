@@ -24,7 +24,7 @@
       </div>
       <div class="modal-body">
         
-      <form class=" needs-validation" novalidate method="POST" action="{{route('newcake.store')}}" enctype="multipart/form-data" >
+      <form class=" needs-validation" novalidate method="POST"  action="{{route('newcake.store')}}" enctype="multipart/form-data" >
 @csrf 
 
 <div class="form-group">
@@ -70,9 +70,10 @@
 
 
   <label class="form-label" for="customFile"> half photo</label>
-<input type="file" name="image"  value="{{ old('image') }}" class="form-control-file">
+<input type="file" name="image"   class="form-control-file">
     <div class="invalid-feedback d-block">    </div>
-  
+ 
+   
 
   <div class="form-group">
     <button class="btn btn-primary my_card text-white" type="submit">Submit form</button>
@@ -102,7 +103,7 @@
 
 
 @can('create',App\Models\newcake::class)
-<button type="submit" class="btn btn-info btn-small  mb-3 my_card text-white" data-toggle="modal" data-target="#exampleModal">+ new cake</button>
+<button type="submit" class="btn btn-info btn-small  mb-3 my_card text-white" data-toggle="modal" data-target="#exampleModal"> new cake  <i class="fas fa-plus fa-lg"></i></button>
 @endcan
           
 <table class="table m-1" id="example">

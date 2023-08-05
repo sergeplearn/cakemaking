@@ -30,7 +30,7 @@ class ReplycommentController extends Controller
     public function store(StorereplycommentRequest $request)
     {
 
-        // $this->authorize('create',replycomment::class);
+         $this->authorize('create',replycomment::class);
 
         replycomment::create($request->validated());
 
@@ -76,3 +76,5 @@ class ReplycommentController extends Controller
         return redirect('user/newcake/'.$replycomment->newcake_id);
     }
 }
+
+

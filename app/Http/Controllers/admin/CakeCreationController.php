@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StorenewcakeRequest;
 use Propaganistas\LaravelPhone\Casts\RawPhoneNumberCast;
 use Propaganistas\LaravelPhone\Casts\E164PhoneNumberCast;
+use Intervention\Image\ImageManagerStatic as Image;
 use App\Models\newcake;
+//use Image;
 use Illuminate\Http\Request;
 
 class CakeCreationController extends Controller
@@ -32,12 +34,28 @@ class CakeCreationController extends Controller
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
             $filename = time().'.'.$extension;
+         
             $file->move(public_path('images'), $filename);
+            
 
         }
-        // $newImageName = time().'_'.$request->name.'.'.
-        //$request->image->extension();
-        //$request->image->move(public_path('images'), $newImageName);
+
+       
+        if ($request->hasfile('image')) {
+            $img = $request->file('image');
+            $extension = $img->getClientOriginalExtension();
+            $names = time().'.'.$extension;
+          $image = Image::make(public_path('images/'.$names))->resize(20, 20);
+          $image->blur();
+            $image->save(public_path('bgimg/'.$names),80);
+
+       }
+
+       
+      
+       
+
+
       
         $this->authorize('create', newcake::class);
         $request->user()->newcake()->create([
@@ -47,10 +65,11 @@ class CakeCreationController extends Controller
             'price' => $request['price'],
             'more' => $request['more'],
             'image_path' => $filename,
+           'image_paths' => $names,
 
         ]);
 
-        return redirect()->back()->with('msgs', 'successfully updated');;
+        return redirect()->back()->with('msgs', 'successfully updated');
     }
 
     /**

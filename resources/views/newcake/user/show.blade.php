@@ -1,4 +1,57 @@
 @extends('layouts.everyone')
+@section('css')
+<style>
+  img{
+    width:100%;
+    aspect-ratio:1/1;
+ 
+    object-position: center;
+    object-fit:cover;
+    
+  }
+
+  .blur-load::before {
+    content: "";
+    position: absolute;
+    inset:0;
+    animation: pulse 2.5s infinite;
+    
+  }
+  .blur-load.loaded::before {
+    content:none;
+    animation: none;
+  }
+
+  @keyframes pulse {
+    0% {
+      background-color:rgba(255, 255, 255, 0);
+    }
+    50% {
+      background-color:rgba(255, 255, 255, 0.2);
+    }
+    100% {
+      background-color:rgba(255, 255, 255, 0);
+    }
+  }
+
+  
+  .blur-load {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+   
+  }
+  .blur-load.loaded > img {
+    opacity: 1;
+  }
+  .blur-load > img {
+    opacity: 0;
+    transition: opacity 200ms ease-in-out;
+  }
+
+</style>
+@stop
+
 
 @section('content')
 
@@ -54,7 +107,7 @@
           <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
             <div class="d-flex flex-start w-100">
               <div class="form-outline w-100">
-                <textarea name="comment" class="form-control" placeholder="Type comment..." id="textAreaExample" rows="4"
+                <textarea name="comment" class="form-control ml-1 shadow-none textarea" placeholder="Type comment..." id="textAreaExample" rows="4"
                 style="background: #fff;"></textarea>
                 
                 
@@ -70,7 +123,7 @@
       </div>
       <div class="modal-footer">
         
-      <button type="submit"  class="btn btn-primary btn-sm button1 text-white">Post comment</button>
+      <button type="submit" class="btn btn-primary shadow-none btn-sm button1 text-white">Post comment</button>
       </div>
       </form>
     </div>
@@ -80,14 +133,17 @@
 
 
 
+
+
+
 <div class="card mt-4 border-0">
 
 
 <div class="row m-3">
       <div class="col-md-4">
-       
-      <img src="{{ asset('images/' . $newcake->image_path)  }}" class="card-img-top img-fluid" alt="Fissure in Sandstone" width='500px' height='500px'/>
-      
+      <div class="blur-load " style="background-image:url({{ asset('bgimg/' . $newcake->image_paths)  }})">
+      <img src="{{ asset('images/' . $newcake->image_path)  }}" class="menu-img card-img-top img-fluid" alt="Fissure in Sandstone" width='500px' height='500px'/>
+      </div>
 
       
   
@@ -97,7 +153,7 @@
         <input type="hidden" value ="1" name = "like">
         <input type="hidden" value ="{{ Auth::user()->id }}" name = "user_id">
         <input type="hidden" value ="{{ $newcake->id}}" name = "newcake_id">
-        <button type="submit" class="btn rounded-pill shadow-lg"><i class="fas fa-thumbs-up me-2"></i> {{ $totallikes }}</button>
+        <button type="submit" class="btn rounded-pill shadow-lg"><i class="fas fa-thumbs-up me-2"></i> <span class="ml-1">Like  </span>{{ $totallikes }}</button>
        </form> </li>
 
         <li class="m-1 my_card"><form action="{{ route('unlike.store')}}" method="post">
@@ -105,19 +161,16 @@
         <input type="hidden" value ="0" name = "unlike">
         <input type="hidden" value ="{{ Auth::user()->id }}" name = "user_id">
         <input type="hidden" value ="{{ $newcake->id}}" name = "newcake_id">
-        <button type="submit" class="btn btn-rounded  rounded-pill shadow-lg"><i class="fas fa-thumbs-down me-2"></i> {{ $totalunlikes }}</button>
+        <button type="submit" class="btn btn-rounded  rounded-pill shadow-lg"><i class="fas fa-thumbs-down me-2"></i><span class="ml-1">Unlike  </span> {{ $totalunlikes }} </button>
        </form> 
        </li>
-        <li class="m-1 my_card"><button  data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn rounded-pill shadow-lg"><i class="far fa-comment-dots"></i> comment</button></li>
+        <li class="m-1 my_card"><button  data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn rounded-pill shadow-lg"><i class="far fa-comment-dots"></i><span class="ml-1">  Comment</span></button></li>
       </ul>
 
       
 
        
       
-       
-
-    
       </div>
       <div class="col-md-8 rounded ">
 
@@ -134,7 +187,7 @@
     </div>
   <div class="footer ">
     <span class="text-gray-500">
-      By <span class="fw-bold fst-italic fs-4 text-gray-800">{{ $newcake->user->name }}</span>,Created on {{
+      By <span class="fw-bold fst-italic fs-4 text-gray-800">{{ optional($newcake->user)->name }}</span>,Created on {{
         date('jS M Y', strtotime($newcake->updated_at))
       }}
     </span>
@@ -157,7 +210,7 @@
  
     
 
-      @forelse($newcake->comments as $comment)
+      @forelse($comment as $comment)
 
 
 
@@ -304,7 +357,7 @@
 
         <div class="card mb-1 mx-2 mt-3">
           <div class="card-body ">
-            <h4 class="text-center mb-4 pb-2"> comments </h4>
+            
               
             <div class="row">
               <div class="col">
@@ -332,15 +385,17 @@
                   <div class="flex-grow-1 flex-shrink-1">
                     <div>
                       <div class="d-flex justify-content-between align-items-center">
-                        <p class="mb-1">
-                        {{ $comment->user->name }}  <span class="small txtc">- {{ $comment->created_at->diffForHumans()}}</span>
+                        <p class="mb-1 font-weight-bold ">
+                        {{ $comment->user->name }}  <span class="small txtc date text-black-50">- {{ $comment->created_at->diffForHumans()}}</span>
                         </p>
                         
+                        @can('create',App\Models\replycomment::class)
                         <button style="float:right" type="button" class="btn my_card" data-bs-toggle="modal" data-bs-target="#exampleModal{{$comment->id}}">
                         <i class="fas fa-reply fa-xs"></i><span class="small"> reply</span>
                              </button>
+                             @endcan
                       </div>
-                      <p class="small mb-0">
+                      <p class="small mb-0 comment-text">
                       {{ $comment->comment }} 
                       </p>
                     </div>
@@ -533,6 +588,23 @@
 
 
 
-                
+                <script>
+  const blurDivs = document.querySelectorAll(".blur-load")
+blurDivs.forEach(div => {
+  const img = div.querySelector("img")
+
+  function loaded(){
+div.classList.add("loaded");
+  }
+
+
+  
+  if(img.complete ){
+    loaded()
+  }else{
+    img.addEventListener("load", loaded)
+  }
+})
+</script>              
                    
 @stop

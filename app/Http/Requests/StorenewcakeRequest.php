@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Requests;
-
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\File;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StorenewcakeRequest extends FormRequest
@@ -28,7 +29,7 @@ class StorenewcakeRequest extends FormRequest
             'price' => ['required', 'string', 'max:255'],
             'more' => ['required'],
 
-            'image' => 'required|mimes:jpeg,png,jpg',
+            'image' => 'required|mimes:jpeg,png,jpg, Rule::dimensions()->maxWidth(700),Rule::dimensions()->maxHeight(700) ',
         ];
     }
 

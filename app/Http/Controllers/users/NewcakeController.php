@@ -5,7 +5,8 @@ namespace App\Http\Controllers\users;
 use App\Http\Controllers\Controller;
 use App\Models\newcake;
 use Illuminate\Http\Request;
-
+use App\Models\comment;
+use Carbon\Carbon;
 class NewcakeController extends Controller
 {
     /**
@@ -37,7 +38,11 @@ class NewcakeController extends Controller
      */
     public function show(newcake $newcake)
     {
-        return view('newcake.user.show', ['newcake' => $newcake]);
+
+       $comment = comment::where('newcake_id',$newcake->id)->latest()->get();
+       
+
+     return view('newcake.user.show', ['newcake' => $newcake, 'comment'=>$comment ]);
 
     }
 

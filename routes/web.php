@@ -57,7 +57,7 @@ Route::group(['middleware' => 'auth'], function () {
             ->only(['store']);
 
         Route::resource('upload_img', UploadImgController::class)
-            ->only(['store']);
+            ->only(['create','store']);
 
     });
 

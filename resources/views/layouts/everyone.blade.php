@@ -10,6 +10,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <!-- <link rel="stylesheet" href="/../css/mdb.min.css">-->
    
+  <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <link rel="stylesheet" href="/../css/everyone.css">
     @yield('css')
@@ -30,7 +33,7 @@
 <!-- Scripts -->
 
   </head>
-  <body class="antialiased leading-none font-sans text-black h.screen bg-gray-100">
+  <body class=" leading-none font-sans text-black h.screen section-bg">
 
 
 
@@ -76,10 +79,10 @@
 
 
 
-
+<header>
 
 <!-- Navbar -->
-<nav class="navbar sticky-top header space-x-4 navbar-expand-lg bg-gray  shadow">
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-2 sticky-top">
 
   <!-- Container wrapper -->
   <div class="container-fluid">
@@ -103,13 +106,9 @@
 
       <!-- Navbar brand -->
       <a class="navbar-brand mt-2 mt-lg-0" href="#">
-        <img
-          src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
-          height="15"
-          alt="MDB Logo"
-          loading="lazy"
-        />
-      </a>
+          <img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp" height="15" alt="MDB Logo"
+            loading="lazy" />
+        </a>
       <!-- Left links -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
@@ -223,15 +222,15 @@
   <!-- Container wrapper -->
 </nav>
 <!-- Navbar -->
+</header>
 
-
-
-  <div class="container py-4 mb-5" id="main">
+<main id="main" class="py-4 mb-5">
+  <div class="container  " >
 
   @yield('content')
 
   </div>
-
+</main>
   <footer class="bg-gray-800 py-20 mt-20 text-center   text-lg-start " >
   
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
@@ -243,9 +242,21 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-   
+  
+
 
     <script src="/../js/app.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/brands.min.js" integrity="sha512-KYlRezs7yAa59UnX6zAvY7I96Te02kycQn02Sr6FU/fBpxcXAwumRe5DHVrqVnWTt9HY/PktrAPZzSe9UE1Yxg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) { 
+            var scrollpos = localStorage.getItem('scrollpos');
+            if (scrollpos) window.scrollTo(0, scrollpos);
+        });
+
+        window.onbeforeunload = function(e) {
+            localStorage.setItem('scrollpos', window.scrollY);
+        };
+    </script>
+  
   </body>
 </html>
