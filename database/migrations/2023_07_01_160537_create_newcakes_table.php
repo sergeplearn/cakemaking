@@ -18,7 +18,10 @@ return new class extends Migration
             $table->string('tell');
             $table->integer('price');
             $table->longText('more');
+            $table->uuid('user_id');
+            $table->string('image_paths');
             $table->string('image_path');
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

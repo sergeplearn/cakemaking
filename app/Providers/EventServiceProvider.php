@@ -1,12 +1,15 @@
 <?php
 
 namespace App\Providers;
-use App\Events\greetingevent;
-use App\Listeners\greetinglistener;
+
 use App\Events\Createnewregisteredusers;
+use App\Events\greetingevent;
 use App\Events\NewcakeCreated;
+use App\Events\Newuserhasregisteredevent;
+use App\Listeners\greetinglistener;
 use App\Listeners\SendNewcakeNotifications;
 use App\Listeners\SendNewRegistedNotifications;
+use App\Listeners\welcomenewuserListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -28,6 +31,10 @@ class EventServiceProvider extends ServiceProvider
         ],
         greetingevent::class => [
             greetinglistener::class,
+        ],
+
+        Newuserhasregisteredevent::class => [
+            welcomenewuserListener::class,
         ],
         Registered::class => [
             SendEmailVerificationNotification::class,

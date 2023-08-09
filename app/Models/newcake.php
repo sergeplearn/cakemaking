@@ -4,17 +4,17 @@ namespace App\Models;
 
 use App\Events\NewcakeCreated;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 
 class newcake extends Model
 {
     use Notifiable;
     use HasUuids;
+    use SoftDeletes;
 
     protected $table = 'newcakes';
 
@@ -56,5 +56,8 @@ class newcake extends Model
         return $this->hasMany(unlike::class, 'newcake_id', 'id');
     }
 
-   
+    public function replycomment(): HasMany
+    {
+        return $this->hasMany(replycomment::class, 'newcake_id', 'id');
+    }
 }

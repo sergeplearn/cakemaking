@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('image_path');
             $table->longText('more');
             $table->foreignUuid('user_id')->constrained()->cascadeOnDelete();
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

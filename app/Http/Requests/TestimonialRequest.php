@@ -22,10 +22,10 @@ class TestimonialRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nameofperson'  => ['required', 'string', 'max:255'],
+            'nameofperson' => ['required', 'string', 'max:255'],
             'position' => ['required', 'string', 'max:255'],
-            'more'  => ['required', 'string'],
-            'image' => 'required|mimes:jpeg,png,jpg',
+            'more' => ['required', 'string'],
+            // 'image' => 'required|mimes:jpeg,png,jpg',
         ];
     }
 }

@@ -56,7 +56,7 @@ class CommentController extends Controller
      */
     public function update(StorecommentReques $request, comment $comment)
     {
-        $this->authorize('update', $comment);
+        // $this->authorize('update', $comment);
 
         $comment->update($request->validated());
 
@@ -68,7 +68,8 @@ class CommentController extends Controller
      */
     public function destroy(comment $comment)
     {
-        $this->authorize('delete', $comment);
+        // $this->authorize('delete', $comment);
+        $comment->replycomments()->delete();
         $comment->delete();
 
         return redirect('user/newcake/'.$comment->newcake_id);

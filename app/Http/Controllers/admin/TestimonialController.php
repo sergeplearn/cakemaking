@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\admin;
-use App\Http\Requests\TestimonialRequest; 
+
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TestimonialRequest;
 use App\Models\testimonial;
-use Illuminate\Http\Request;
-use App\Events\greetingevent;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class TestimonialController extends Controller
 {
@@ -32,18 +32,9 @@ class TestimonialController extends Controller
      */
     public function store(TestimonialRequest $request)
     {
-        $validated = $request->validated();
-    
-        $newImageName = time().'_'.$request->name.'.'.
-        $request->image->extension();
-        $request->image->move(public_path('images'), $newImageName);
 
-        $request->user()->testimonial()->create([
-            'nameofperson' => $request['nameofperson'],
-            'position' => $request['position'],
-            'more' => $request['more'],
-            'image_path' => $newImageName,
-        ]);
+        $testimonial = $request->user()->testimonial()->create($this->validatedrequest());
+        $this->storeimages($testimonial);
 
         return redirect('/admin/testimonial')->with('msgs', 'successfully updated');
     }
@@ -69,17 +60,10 @@ class TestimonialController extends Controller
      */
     public function update(TestimonialRequest $request, testimonial $testimonial)
     {
-        $newImageName = time().'_'.$request->name.'.'.
-        $request->image->extension();
-        $request->image->move(public_path('images'), $newImageName);
-        $testimonial->update([
 
-            'nameofperson' => $request['nameofperson'],
-            'position' => $request['position'],
-            'more' => $request['more'],
-            'image_path' => $newImageName,
-        ]
-        );
+        $testimonial->update($this->validatedrequest());
+        $this->storeimages($testimonial);
+
         return redirect('/admin/testimonial')->with('msgs', 'successfully updated');
     }
 
@@ -91,5 +75,49 @@ class TestimonialController extends Controller
         $testimonial->delete();
 
         return redirect('/admin/testimonial')->with('msgs', 'successfully updated');
+    }
+
+    private function storeimages($testimonial)
+    {
+
+        if (! is_dir(public_path('/images'))) {
+            mkdir(public_path('/images'), 0777);
+        }
+
+        if (request()->hasfile('image')) {
+            $file = request()->file('image');
+
+            $extension = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            Image::make($file)->fit(250, 250)->save(public_path('images/'.$filename));
+
+        }
+
+        if (request()->has('image')) {
+
+            $testimonial->update([
+                'image_path' => $filename,
+
+            ]);
+        }
+    }
+
+    private function validatedrequest()
+    {
+
+        return tap(request()->validate([
+            'nameofperson' => ['required', 'string', 'max:255'],
+            'position' => ['required', 'string', 'max:255'],
+            'more' => ['required', 'string'],
+
+        ]), function () {
+
+            request()->validate([
+                'image' => 'file|image|max:5000',
+            ]);
+
+        }
+        );
+
     }
 }

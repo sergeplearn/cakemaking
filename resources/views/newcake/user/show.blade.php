@@ -2,7 +2,7 @@
 @section('css')
 <style>
   img{
-    width:100%;
+   
     aspect-ratio:1/1;
  
     object-position: center;
@@ -55,26 +55,6 @@
 
 @section('content')
 
-<?php
-   $totallikes = 0;
-   ?>
-@foreach($newcake->likes as $like)
-<p class="d-none">
-{{ $count = 1 }}
-</p>
-<?php $totallikes += $count ?>
-@endforeach
-
-<?php
-   $totalunlikes = 0;
-   ?>
-@foreach($newcake->unlikes as $unlike)
-<p class="d-none">
-{{ $uncount = 1 }}
-</p>
-<?php $totalunlikes += $uncount ?>
-
-@endforeach
 
 
 @if($errors->any())
@@ -142,7 +122,7 @@
 <div class="row m-3">
       <div class="col-md-4">
       <div class="blur-load " style="background-image:url({{ asset('bgimg/' . $newcake->image_paths)  }})">
-      <img src="{{ asset('images/' . $newcake->image_path)  }}" class="menu-img card-img-top img-fluid" alt="Fissure in Sandstone" width='500px' height='500px'/>
+      <img src="{{ asset('images/' . $newcake->image_path)  }}" class="menu-img card-img-top img-fluid" alt="Fissure in Sandstone" />
       </div>
 
       
@@ -153,7 +133,7 @@
         <input type="hidden" value ="1" name = "like">
         <input type="hidden" value ="{{ Auth::user()->id }}" name = "user_id">
         <input type="hidden" value ="{{ $newcake->id}}" name = "newcake_id">
-        <button type="submit" class="btn rounded-pill shadow-lg"><i class="fas fa-thumbs-up me-2"></i> <span class="ml-1">Like  </span>{{ $totallikes }}</button>
+        <button type="submit" class="btn rounded-pill shadow-lg"><i class="fas fa-thumbs-up me-2"></i> <span class="ml-1">Like  </span>{{ $newcake->likes->count() }}</button>
        </form> </li>
 
         <li class="m-1 my_card"><form action="{{ route('unlike.store')}}" method="post">
@@ -161,7 +141,7 @@
         <input type="hidden" value ="0" name = "unlike">
         <input type="hidden" value ="{{ Auth::user()->id }}" name = "user_id">
         <input type="hidden" value ="{{ $newcake->id}}" name = "newcake_id">
-        <button type="submit" class="btn btn-rounded  rounded-pill shadow-lg"><i class="fas fa-thumbs-down me-2"></i><span class="ml-1">Unlike  </span> {{ $totalunlikes }} </button>
+        <button type="submit" class="btn btn-rounded  rounded-pill shadow-lg"><i class="fas fa-thumbs-down me-2"></i><span class="ml-1">Unlike  </span> {{ $newcake->unlikes->count() }} </button>
        </form> 
        </li>
         <li class="m-1 my_card"><button  data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn rounded-pill shadow-lg"><i class="far fa-comment-dots"></i><span class="ml-1">  Comment</span></button></li>

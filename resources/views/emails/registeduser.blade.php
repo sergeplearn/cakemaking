@@ -2,7 +2,7 @@
 # Introduction
 
 
-Welcome Mr/Mrs {{ $User->name }}
+{{ $User->name}}
 <x-mail::button :url="''">
 Button Text
 </x-mail::button>

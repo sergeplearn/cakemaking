@@ -38,7 +38,7 @@ class ProfileController extends Controller
     public function show(User $User)
     {
         //dd($User);
-        return view('profile.index',['user'=>$User]);
+        return view('profile.index', ['user' => $User]);
     }
 
     /**

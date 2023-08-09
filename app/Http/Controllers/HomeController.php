@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\newcake;
+use App\QueryFilters\Active;
+use App\QueryFilters\sort;
+use Illuminate\Pipeline\Pipeline;
 
 class HomeController extends Controller
 {
@@ -23,11 +26,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $cakes = newcake::all();
 
-     
+        $cakes = app(Pipeline::class)
+            ->send(newcake::query())->through([
+            Active::class,
+            sort::class,
+        ])->thenReturn()->get();
 
-        return view('Home', ['cakes' => newcake::with('user')->latest()->get()]);
+        return view('Home');
 
     }
 }

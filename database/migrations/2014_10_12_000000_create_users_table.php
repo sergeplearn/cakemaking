@@ -20,6 +20,7 @@ return new class extends Migration
 
             $table->string('user_role')->default('user');
             $table->rememberToken();
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\admin;
-use App\Http\Requests\TeamsRequest; 
+
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TeamsRequest;
 use App\Models\team;
-use Illuminate\Http\Request;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class TeamsController extends Controller
 {
@@ -31,18 +32,9 @@ class TeamsController extends Controller
      */
     public function store(TeamsRequest $request)
     {
-        $request->validated();
-        $newImageName = time().'_'.$request->name.'.'.
-        $request->image->extension();
-        $request->image->move(public_path('images'), $newImageName);
 
-        $request->user()->teams()->create([
-            'nameofperson' => $request['nameofperson'],
-            'position' => $request['position'],
-            'tell' => $request['tell'],
-            'more' => $request['more'],
-            'image_path' => $newImageName,
-        ]);
+        $team = $request->user()->teams()->create($this->validatedrequest());
+        $this->storeimages($team);
 
         return redirect('/admin/team')->with('msgs', 'successfully updated');
     }
@@ -68,20 +60,9 @@ class TeamsController extends Controller
      */
     public function update(TeamsRequest $request, team $team)
     {
-        $request->validated();
-        $newImageName = time().'_'.$request->name.'.'.
-        $request->image->extension();
-        $request->image->move(public_path('images'), $newImageName);
-        $team->update([
 
-            'nameofperson' => $request['nameofperson'],
-            'position' => $request['position'],
-            'tell' => $request['tell'],
-            'more' => $request['more'],
-            'image_path' => $newImageName,
-
-        ]
-        );
+        $team->update($this->validatedrequest());
+        $this->storeimages($team);
 
         return redirect('/admin/team')->with('msgs', 'successfully updated');
     }
@@ -95,5 +76,49 @@ class TeamsController extends Controller
         $team->delete();
 
         return redirect('/admin/team')->with('msgs', 'successfully updated');
+    }
+
+    private function storeimages($team)
+    {
+
+        if (! is_dir(public_path('/images'))) {
+            mkdir(public_path('/images'), 0777);
+        }
+
+        if (request()->hasfile('image')) {
+            $file = request()->file('image');
+
+            $extension = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            Image::make($file)->fit(250, 250)->save(public_path('images/'.$filename));
+
+        }
+
+        if (request()->has('image')) {
+
+            $team->update([
+                'image_path' => $filename,
+
+            ]);
+        }
+    }
+
+    private function validatedrequest()
+    {
+
+        return tap(request()->validate([
+            'nameofperson' => 'required|string|max:255',
+            'position' => 'required|string|max:255',
+            'more' => 'required|string',
+            'tell' => 'required|phone:AUTO,CM',
+        ]), function () {
+
+            request()->validate([
+                'image' => 'file|image|max:5000',
+            ]);
+
+        }
+        );
+
     }
 }

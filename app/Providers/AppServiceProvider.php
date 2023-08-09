@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\newcake;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +25,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // View::share('cakes',newcake::with('user')->latest()->get());
+
+        View::composer(['newcake.admin.index', 'Home'], function ($view) {
+            $view->with('cakes', newcake::with('user')->latest()->get());
+        }
+        );
     }
 }

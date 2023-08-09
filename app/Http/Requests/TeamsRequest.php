@@ -22,12 +22,12 @@ class TeamsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nameofperson'  => ['required', 'string', 'max:255'],
+            'nameofperson' => ['required', 'string', 'max:255'],
             'position' => ['required', 'string', 'max:255'],
-            'more'  => ['required', 'string'],
-            'image' => 'required|mimes:jpeg,png,jpg',
+            'more' => ['required', 'string'],
+            //'image' => 'required|mimes:jpeg,png,jpg',
             'tell' => 'required|phone:AUTO,CM',
-            
+
         ];
     }
 
@@ -35,7 +35,7 @@ class TeamsRequest extends FormRequest
     {
         return [
             'nameofperson.required' => 'the name of the person is required',
-            'tell.phone'=>'required a validate cameroon number'
+            'tell.phone' => 'required a validate cameroon number',
 
         ];
     }

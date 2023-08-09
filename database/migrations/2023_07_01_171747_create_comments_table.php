@@ -16,6 +16,7 @@ return new class extends Migration
             $table->uuid('newcake_id');
             $table->longText('comment');
             $table->foreignUuid('user_id')->constrained()->cascadeOnDelete();
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

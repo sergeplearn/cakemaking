@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Console\Commands;
-use Illuminate\Support\Facades\DB;
+
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
 class Deletecomment extends Command
 {

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->uuid('newcake_id');
             $table->uuid('comment_id');
             $table->uuid('user_id');
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

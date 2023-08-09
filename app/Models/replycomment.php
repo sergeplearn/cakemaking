@@ -31,4 +31,9 @@ class replycomment extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function newcakes(): BelongsTo
+    {
+        return $this->belongsTo(newcake::class);
+    }
 }

@@ -2,7 +2,7 @@
 @section('css')
 <style>
   img{
-    width:100%;
+   
     aspect-ratio:1/1;
  
     object-position: center;
@@ -77,22 +77,9 @@
 
 
     <div class="row">
+      <?php $totalreply = 0; ?>
+      
     @foreach($cakes as $cake)
-
-    <?php  
-            $totalreply = 0;
-            ?>
-    
-          @foreach($cake->comments as $comment)
-          @foreach($comment->replycomments as $reply)
-          <?php  
-            $totalreply += 1;
-            ?>
-
-          @endforeach
-
-         @endforeach
-
 
       <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
         <div class="card rounded-6  w-100 my-2 shadow-2-strong  my_card ">
@@ -105,16 +92,7 @@
  </div>  
         
           <div class="card-body d-flex flex-column">
-            <?php  
-            $total = 0;
-            ?>
-          @foreach($cake->comments as $comment)
-
-<?php  
-            $total += 1;
-            ?>
-@endforeach
-
+          
 
             <h6 class="card-title text-center text-dark">{{ $cake->nameofcake}} cake</h6>
             <hr class="hr hr-blurry px-1 shadow" style="width:100px; margin: auto; height:4px" />
@@ -132,10 +110,10 @@
                 <td>{{ $cake->price}} Frs</td>
               </tr>
             </table>
-           
+          
             
             
-            <p class="txt3"><i class="far fa-clock"></i>{{ $cake->created_at->diffForHumans()}} <span class="comments"><i class="fas fa-comments"></i><?php  echo $totalreply + $total;?> Comments</span></p>
+            <p class="txt3"><i class="far fa-clock"></i>{{ $cake->created_at->diffForHumans()}} <span class="comments"><i class="fas fa-comments"></i> {{$cake->replycomment->count() + $cake->comments->count()}} Comments</span></p>
             
             
           </div>

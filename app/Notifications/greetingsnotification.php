@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Notifications;
+
 use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -35,11 +35,11 @@ class greetingsnotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-        ->subject("New Cake from {$this->User->name}")
-        ->greeting("New Cake from {$this->User->email}")
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->subject("New Cake from {$this->User->name}")
+            ->greeting("New Cake from {$this->User->email}")
+            ->line('The introduction to the notification.')
+            ->action('Notification Action', url('/'))
+            ->line('Thank you for using our application!');
     }
 
     /**

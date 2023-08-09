@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -21,7 +21,7 @@ class AdminController extends Controller
             ->select('more')->get();
         $users = DB::table('users')
             ->select('name')->get();
-           
-        return view('admin.admin',['newcakes'=>$newcakes,'teams'=>$teams,'testimonials'=>$testimonials,'users'=> $users]);
+
+        return view('admin.admin', ['newcakes' => $newcakes, 'teams' => $teams, 'testimonials' => $testimonials, 'users' => $users]);
     }
 }

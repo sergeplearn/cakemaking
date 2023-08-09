@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\users;
-use App\Http\Requests; 
+
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorereplycommentRequest;
 use App\Models\replycomment;
@@ -30,7 +30,7 @@ class ReplycommentController extends Controller
     public function store(StorereplycommentRequest $request)
     {
 
-         $this->authorize('create',replycomment::class);
+        $this->authorize('create', replycomment::class);
 
         replycomment::create($request->validated());
 
@@ -70,11 +70,9 @@ class ReplycommentController extends Controller
      */
     public function destroy(replycomment $replycomment)
     {
-        $this->authorize('delete', $replycomment);
+        // $this->authorize('delete', $replycomment);
         $replycomment->delete();
 
         return redirect('user/newcake/'.$replycomment->newcake_id);
     }
 }
-
-

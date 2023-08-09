@@ -23,6 +23,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'Userroles:admin', 'prefix' => 'admin', 'namespace' => 'admin'], function () {
         Route::get('/', AdminController::class);
 
+        Route::get('/deleted_items', 'RecoverDeletedCakeController@index');
+
+        Route::get('/deleted_items/{id}', 'RecoverDeletedCakeController@edit');
+
         Route::resource('User', ProfileController::class)
             ->only(['show', 'edit', 'update']);
 
@@ -57,7 +61,7 @@ Route::group(['middleware' => 'auth'], function () {
             ->only(['store']);
 
         Route::resource('upload_img', UploadImgController::class)
-            ->only(['create','store']);
+            ->only(['create', 'store']);
 
     });
 
@@ -71,6 +75,9 @@ Route::group(['prefix' => 'user', 'namespace' => 'users'], function () {
         ->only(['index']);
 
 });
+
+Route::resource('catigory', catigoryController::class)
+    ->except(['index', 'show', 'edit', 'create']);
 
 Auth::routes();
 

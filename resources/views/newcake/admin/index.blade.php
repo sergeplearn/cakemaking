@@ -99,7 +99,9 @@
 </div>
 
 
-@include('alert.index') 
+@include('alert.index')
+
+
 
 
 @can('create',App\Models\newcake::class)
@@ -180,6 +182,15 @@
     </div>
   </div>
 
+
+  <div class="form-group">
+    <label for="validationCustom05" class="form-label">cake image</label>
+   
+    <input type="file" name="image" class="form-control" id="validationCustom05" >
+    <div class="invalid-feedback">
+      Please provide a valid more.
+    </div>
+  </div>
 
   
   <div class="form-group text-center">
@@ -270,14 +281,15 @@
 
     </tr>
 
-
     
     @endforeach
    
   </tbody>
 </table>
 
-
+<div class="text-center">
+<a href="/admin/deleted_items" class="btn btn-info btn-small">See deleted items</a>
+</div>
 
 
 @stop
