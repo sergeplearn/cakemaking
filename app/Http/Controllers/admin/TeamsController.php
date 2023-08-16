@@ -20,14 +20,6 @@ class TeamsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(TeamsRequest $request)
@@ -37,22 +29,6 @@ class TeamsController extends Controller
         $this->storeimages($team);
 
         return redirect('/admin/team')->with('msgs', 'successfully updated');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(teams $teams)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(teams $teams)
-    {
-        //
     }
 
     /**

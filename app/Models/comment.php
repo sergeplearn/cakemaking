@@ -36,4 +36,9 @@ class comment extends Model
     {
         return $this->hasMany(replycomment::class, 'comment_id', 'id');
     }
+
+    public function scopeSelectcakeid($query, $newcakeid)
+    {
+        return $query->where('newcake_id', $newcakeid);
+    }
 }

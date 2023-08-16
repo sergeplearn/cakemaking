@@ -27,6 +27,12 @@
       <form class=" needs-validation" novalidate method="POST"  action="{{route('newcake.store')}}" enctype="multipart/form-data" >
 @csrf 
 
+<select class="form-control " name="category_id" aria-label="Default select example" required>
+@foreach( $categories as  $category)
+<option value="{{$category->id}}">{{$category->category}}</option>
+@endforeach
+</select>
+
 <div class="form-group">
     <label for="validationCustom05" class="form-label">name of person</label>
     <input type="text" name="nameofperson" class="form-control" id="validationCustom05" required>
@@ -68,12 +74,12 @@
     </div>
   </div>
 
-
+  <div class="form-group">
   <label class="form-label" for="customFile"> half photo</label>
 <input type="file" name="image"   class="form-control-file">
     <div class="invalid-feedback d-block">    </div>
  
-   
+   </div>
 
   <div class="form-group">
     <button class="btn btn-primary my_card text-white" type="submit">Submit form</button>
@@ -101,9 +107,11 @@
 
 @include('alert.index')
 
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
 
-
-
+ 
 @can('create',App\Models\newcake::class)
 <button type="submit" class="btn btn-info btn-small  mb-3 my_card text-white" data-toggle="modal" data-target="#exampleModal"> new cake  <i class="fas fa-plus fa-lg"></i></button>
 @endcan
@@ -140,6 +148,12 @@
       <form class=" needs-validation" novalidate method="POST" action="{{ route('newcake.update',$cake->id)}}"  enctype="multipart/form-data" >
     @method('patch')
 @csrf 
+<select class="form-control " name="category_id" aria-label="Default select example" required>
+@foreach( $categories as  $category)
+<option value="{{$category->id}}">{{$category->category}}</option>
+@endforeach
+</select>
+
 <div class="form-group">
     <label for="validationCustom05" class="form-label">name of person</label>
     <input type="text" name="nameofperson" value="{{ $cake->nameofperson }}" class="form-control shadow-xl rounded-xl placeholder-gray-50::placeholder" id="validationCustom05" required>
@@ -183,7 +197,7 @@
   </div>
 
 
-  <div class="form-group">
+  <div class="form-group py-2">
     <label for="validationCustom05" class="form-label">cake image</label>
    
     <input type="file" name="image" class="form-control" id="validationCustom05" >
@@ -193,7 +207,7 @@
   </div>
 
   
-  <div class="form-group text-center">
+  <div class="form-group text-center mt-3">
     <button class="btn btn-info my_card  font-bold  rounded-full" type="submit">Submit form</button>
   </div>
 </form>
@@ -286,6 +300,10 @@
    
   </tbody>
 </table>
+
+</div>
+  <div class="col-md-1"></div>
+</div>
 
 <div class="text-center">
 <a href="/admin/deleted_items" class="btn btn-info btn-small">See deleted items</a>

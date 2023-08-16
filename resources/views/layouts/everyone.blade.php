@@ -37,52 +37,12 @@
 
 
 
-@if (Auth::check()) 
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter123" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">update ur profile image</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <form action="{{ route('upload_img.store')}}" method="post" enctype="multipart/form-data">
-          @csrf
-       
-          <input type="hidden" value="{{ Auth::user()->id }}" name ="user_id">
-
-          <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Profile picture') }}</label>
-                           
-                            <div class="col-md-6">
-                                <input id='image' type="file" class="form-control" name="image" autocomplete="image">
-
-                               
-                            </div>
-                        </div>
-                        
-       
-      </div>
-      <div class="modal-footer">
-      <button type="submit" class="btn btn-primary">Save changes</button>
-
-      </div>
-      </form>
-    </div>
-  </div>
-</div>
-
-@endif
-
-
 
 
 <header>
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-2 sticky-top">
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-2 fixed-top">
 
   <!-- Container wrapper -->
   <div class="container-fluid">
@@ -182,8 +142,8 @@
           />
           @else
           <i 
-            data-bs-toggle="modal" 
-            data-bs-target="#exampleModalCenter123" class="fas fa-user-tie fa-2x">
+            
+             class="fas fa-user-tie fa-2x">
             
           </i>
           @endif
@@ -202,9 +162,13 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
+                                    
+                                    <a class="dropdown-item" href="{{route('User.edit',Auth::user()->id)}}">
+                                        {{ __('profile') }}
+                                    </a>
                                     @if(Auth::user()->user_role === "admin" || Auth::user()->user_role === "super_admin" )
                                     
-        <a class="dropdown-item" href="{{ url('/admin/') }}">Admin panal</a>
+                                   <a class="dropdown-item" href="{{ url('/admin/') }}">Admin panal</a>
                                      @endif
                                    
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -225,13 +189,13 @@
 </header>
 
 <main id="main" class="py-4 mb-5">
-  <div class="container  " >
+  <div class="container   mt-4 pt-3" >
 
   @yield('content')
 
   </div>
 </main>
-  <footer class="bg-gray-800 py-20 mt-20 text-center   text-lg-start " >
+  <footer class="bg-gray-800 py-20 mt-20 text-center fixed-bottom  text-lg-start " >
   
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
     © 2020 Copyright:

@@ -65,6 +65,9 @@
         <a href="{{route('User.index')}}" class="list-group-item list-group-item-action py-2 ripple"
           ><i class="fas fa-lock fa-fw me-3"></i><span>Admin registration</span></a
         >
+        <a href="{{route('categories.index')}}" class="list-group-item list-group-item-action py-2 ripple"
+          ><i class="fas fa-lock fa-fw me-3"></i><span>categories</span></a
+        >
         <div class="py-3"></div>
 
         <a class="list-group-item   list-group-item-action py-2 ripple"
@@ -98,6 +101,14 @@
          
         Testimonial  <span><a href="/admin/testimonial" class=" float-right ripple "> <i class=" fas fa-plus fa-lg"></i></a></span> 
           </li>
+
+          
+
+          <li class="list-group-item py-1">
+          
+          Slideimage  <span><a href="/admin/slideimage" class=" float-right ripple"> <i class="fas fa-plus fa-lg"></i></a></span> 
+        </li>
+
 
 
           <li class="list-group-item py-1">
@@ -224,7 +235,7 @@
 <!--Main Navigation-->
 
 <!--Main layout-->
-<main style="margin-top: 58px;">
+<main style="margin-top: 58px; mt-3">
   <div class="container pt-4">
   @yield('content')
 

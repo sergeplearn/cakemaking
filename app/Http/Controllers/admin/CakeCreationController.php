@@ -4,9 +4,9 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorenewcakeRequest;
+use App\Models\categories;
 use App\Models\newcake;
 use Illuminate\Http\Request;
-//use Image;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class CakeCreationController extends Controller
@@ -17,7 +17,9 @@ class CakeCreationController extends Controller
     public function index()
     {
 
-        return view('newcake.admin.index');
+        $categories = categories::all();
+
+        return view('newcake.admin.index', ['categories' => $categories]);
 
     }
 
@@ -26,7 +28,6 @@ class CakeCreationController extends Controller
      */
     public function store(StorenewcakeRequest $request)
     {
-
         $this->authorize('create', newcake::class);
         $newcake = $request->user()->newcake()->create($this->validatedrequest());
         $this->storeimage($newcake);
@@ -39,9 +40,7 @@ class CakeCreationController extends Controller
      */
     public function update(Request $request, newcake $newcake)
     {
-
         $this->authorize('update', $newcake);
-
         $newcake->update($this->validatedrequest());
         $this->storeimage($newcake);
 
@@ -104,6 +103,7 @@ class CakeCreationController extends Controller
             'tell' => 'required|phone:AUTO,CM',
             'price' => ['required', 'string', 'max:255'],
             'more' => ['required'],
+            'category_id' => 'required',
 
         ]), function () {
 

@@ -30,4 +30,14 @@ class like extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function scopeUserid($query, $userid)
+    {
+        return $query->where('user_id', $userid);
+    }
+
+    public function scopeNewcakeid($query, $newcakeid)
+    {
+        return $query->where('newcake_id', $newcakeid);
+    }
 }

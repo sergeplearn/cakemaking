@@ -15,7 +15,7 @@ class sort
 
         $builder = $next($request);
 
-        return $builder->where('title', request('sort'));
+        return $builder->orderBy('price', request('sort'));
 
     }
 }

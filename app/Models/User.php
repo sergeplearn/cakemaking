@@ -88,4 +88,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(testimonial::class, 'user_id', 'id');
     }
+
+    public function categories(): HasMany
+    {
+        return $this->hasMany(categories::class, 'user_id', 'id');
+    }
+
+    public function scopeAdmin($query)
+    {
+        return $query->where('user_role', 'admin');
+    }
 }

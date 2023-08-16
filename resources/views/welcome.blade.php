@@ -1,34 +1,31 @@
 @extends('layouts.everyone')
 @section('content')
 
+
+
         
 
                 <div id="carouselExample" class="carousel slide">
 
 
-                
+                  
   <div class="carousel-inner">
-    <div class="carousel-item active c-item">
-      <img src="images/1689145697_Julian Hood.jpg" class="d-block w-100 c-img" alt="...">
+
+    @foreach($slideimage as $slideimage)
+
+    <div class="carousel-item {{$slideimage->active}} c-item">
+      <img src="{{ asset('images/' . optional($slideimage)->image_path)  }}" class="d-block w-100 c-img" alt="...">
       <div class="carousel-caption top-0 mt-5 ">
-        <h5 class="mt-5 text-uppercase fw-bold display-1">First slide label</h5>
-        <p class="fs-3">Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        <h5 class="mt-5 text-uppercase fw-bold display-1"> 
+{{$slideimage->title}}
+</h5>
+        <p class="fs-3">{{$slideimage->blog}}.</p>
       </div>
     </div>
-    <div class="carousel-item c-item">
-      <img src="images/1689144880_Joseph Fuller.jpg" class="d-block w-100 c-img" alt="...">
-      <div class="carousel-caption top-0 mt-5 ">
-        <h5 class="mt-5 text-uppercase fw-bold display-1">if u can dream it u can do it</h5>
-        <p class="fs-3">Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-      </div>
-    </div>
-    <div class="carousel-item c-item">
-      <img src="images/1689118246_Noelle Walter.jpg" class="d-block w-100 c-img" alt="...">
-      <div class="carousel-caption top-0 mt-5 ">
-        <h5 class="mt-5 text-uppercase fw-bold display-1">First slide label</h5>
-        <p class="fs-3">Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-      </div>
-    </div>
+    
+
+@endforeach  
+    
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -39,6 +36,7 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
+
 
 
 
@@ -76,6 +74,15 @@
 
   </div>
 
-               
+       
+  
+
+
+
+
+
+
+
+  
     
 @stop

@@ -30,4 +30,14 @@ class unlike extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function scopeUnlikeuserid($query, $userid)
+    {
+        return $query->where('user_id', $userid);
+    }
+
+    public function scopeUnlikenewcakeid($query, $newcakeid)
+    {
+        return $query->where('newcake_id', $newcakeid);
+    }
 }

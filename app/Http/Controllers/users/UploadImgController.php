@@ -10,14 +10,6 @@ use Intervention\Image\ImageManagerStatic as Image;
 class UploadImgController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for creating a new resource.
      */
     public function create()
@@ -33,7 +25,7 @@ class UploadImgController extends Controller
 
         $checkimage = upload_img::where('user_id', $request['user_id'])->exists();
         if ($checkimage) {
-            return 'hello world';
+            return redirect()->back()->with('alreadyexist', 'successfully updated');
         }
         if (! $checkimage) {
             $upload_img = upload_img::create($this->validatedrequest());
@@ -41,23 +33,8 @@ class UploadImgController extends Controller
 
         }
 
-        return view('welcome', ['checkimage' => $checkimage])->with('msgs', 'successfully updated');
-    }
+        return redirect()->back()->with('msgs', 'successfully updated');
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(upload_img $upload_img)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(upload_img $upload_img)
-    {
-        //
     }
 
     /**
@@ -65,15 +42,11 @@ class UploadImgController extends Controller
      */
     public function update(Request $request, upload_img $upload_img)
     {
-        $upload_img->update();
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(upload_img $upload_img)
-    {
-        //
+        $upload_img->update($this->validatedrequest());
+        $this->storeimage($upload_img);
+
+        return redirect()->back()->with('msgs', 'successfully updated');
     }
 
     private function storeimage($upload_img)

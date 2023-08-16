@@ -4,7 +4,6 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\newcake;
-use Illuminate\Http\Request;
 
 class RecoverDeletedCakeController extends Controller
 {
@@ -19,30 +18,6 @@ class RecoverDeletedCakeController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(newcake $newcake)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(newcake $newcake, $id)
@@ -54,18 +29,10 @@ class RecoverDeletedCakeController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, newcake $newcake)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      */
     public function destroy(newcake $newcake)
     {
-        //
+
     }
 }

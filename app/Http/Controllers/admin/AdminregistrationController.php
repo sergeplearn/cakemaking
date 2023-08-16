@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Events\Newuserhasregisteredevent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminregistrationRequest;
-use App\Mail\registeduser;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 
 class AdminregistrationController extends Controller
 {
@@ -21,17 +20,9 @@ class AdminregistrationController extends Controller
      */
     public function index()
     {    //$this->authorize('viewAny',User::class);
-        $user = User::where('user_role', 'admin')->get();
+        $user = User::Admin()->get();
 
         return view('adminregistration.register', ['user' => $user]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -39,27 +30,12 @@ class AdminregistrationController extends Controller
      */
     public function store(AdminregistrationRequest $request)
     {
-        // $this->authorize('create', User::class);
+        $this->authorize('create', User::class);
         $User = User::create($request->validated());
-        Mail::to($User->email, $User->name)->send(new registeduser($User));
+
+        event(new Newuserhasregisteredevent($User));
 
         return redirect('/admin/User')->with('msgs', 'successfully updated');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(User $user)
-    {
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(User $User)
-    {
-
     }
 
     /**

@@ -113,7 +113,7 @@
 
 
 
-
+@include('alert.index')
 
 
 <div class="card mt-4 border-0">
@@ -122,8 +122,8 @@
 <div class="row m-3">
       <div class="col-md-4">
       <div class="blur-load " style="background-image:url({{ asset('bgimg/' . $newcake->image_paths)  }})">
-      <img src="{{ asset('images/' . $newcake->image_path)  }}" class="menu-img card-img-top img-fluid" alt="Fissure in Sandstone" />
-      </div>
+      <a href="{{ asset('images/' . $newcake->image_path)  }}" class="glightbox"><img src="{{ asset('images/' . $newcake->image_path)  }}" class="menu-img card-img-top img-fluid" alt="Fissure in Sandstone" /></a>
+    </div>
 
       
   
@@ -161,9 +161,9 @@
     <h3 class="card-title fw-bolder mb-2 mt-1 text-center">{{ $newcake->nameofcake}}</h3>
 
     
-    <div class="scroll mt-0">
+    <div class="scroll  mt-0" >
    
-    <p class="card-text lh-* text-center m-5">{!! $newcake->more !!}.</p>
+    <p  class="card-text lh-* text-center m-5">{!! $newcake->more !!}.</p>
     </div>
   <div class="footer ">
     <span class="text-gray-500">
@@ -551,17 +551,15 @@
 
 
 
-
-
-
-
-
                 </div>
 
 
 
 
 
+
+
+     
 
 
 

@@ -37,6 +37,36 @@
 @endif
 
 
+
+@if(session('limite'))
+<script nonce="2726c7f26c98">
+   swal.fire({
+  title: "oohh sorry the limite has been rich!",
+  text: "nothing was found!",
+  timer: 5000,
+  timerProgressBar: true,
+  icon: "error",
+  showConfirmButton: false,
+});
+</script>  
+@endif
+
+
+
+
+@if(session('alreadyexist'))
+<script nonce="2726c7f26c98">
+   swal.fire({
+  title: "oohh sorry and image already exist!",
+  text: "nothing was found!",
+  timer: 5000,
+  timerProgressBar: true,
+  icon: "error",
+  showConfirmButton: false,
+});
+</script>  
+@endif
+
 @if(session('delete'))
 <script nonce="2726c7f26c98">
   swal.fire({

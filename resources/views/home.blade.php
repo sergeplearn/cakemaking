@@ -71,15 +71,64 @@
 
 <section class=" mb-10">
 
+<div class="dropdown mb-5 ">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+   select item
+  </a>
+
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+  
+    <li><a class="dropdown-item" href="/home">All</a></li>
+   
+
+    <li>
+      <a class="dropdown-item" href="#">
+        categories &raquo;
+      </a>
+      <ul class="dropdown-menu dropdown-submenu">
+      @foreach($categories as  $categories)
+    <li><a class="dropdown-item" href="/home/?category_id={{ $categories->id }}">{{ $categories->category }}</a></li>
+    @endforeach
+        
+        <li>
+          <a class="dropdown-item" href="#">Submenu item 3 &raquo; </a>
+          <ul class="dropdown-menu dropdown-submenu">
+            <li>
+              <a class="dropdown-item" href="/home/?sort=asc">Multi level 1</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Multi level 2</a>
+            </li>
+          </ul>
+        </li>
+       
+      </ul>
+      </li>
     
+  </ul>
+</div>
+
+
+
+
+
+
   
   <h3 class="fw-bold mb-7 text-center">Latest posts</h3>
 
-
+ 
     <div class="row">
       <?php $totalreply = 0; ?>
       
-    @foreach($cakes as $cake)
+     
+
+
+
+      
+    @foreach($cakess as $cake)
+
+    
 
       <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
         <div class="card rounded-6  w-100 my-2 shadow-2-strong  my_card ">
@@ -103,6 +152,8 @@
               </tr>
               <tr>
                 <th>Phone No:</th>
+
+              
                 <td>{{ $cake->tell}}</td>
               </tr>
               <tr>
@@ -121,13 +172,14 @@
           </a>
         </div>
       </div>
-      
+     
       @endforeach 
 </div>
 
 
-<div class="text-center">
-<a class="btn btn-secondary  btn-rounded" href="#" role="button">See more posts</a>
+<div class="text-center mt-3">
+  
+<span> {{ $cakess->onEachSide(1)->appends(request()->input())->links() }} </span>
 </div>
 </section>
 
